@@ -28,3 +28,40 @@ gsap/CSSPlugin.js:
    * @author: Jack Doyle, jack@greensock.com
   *)
 */
+// Function to initialize animations for elements with a specific class
+function initializeClassBasedAnimation(className) {
+  // Select all elements with the class "stagger-txt"
+  const elements = document.querySelectorAll(`.${className}`);
+
+  // Loop through each element and add the data attributes if they are not present
+  elements.forEach(el => {
+    // Set default values for the attributes if they are not already set
+    if (!el.hasAttribute('data-a-split')) {
+      el.setAttribute('data-a-split', 'word'); // Default to 'word' split
+    }
+    if (!el.hasAttribute('data-a-duration')) {
+      el.setAttribute('data-a-duration', '0.7'); // Default duration of 0.7s
+    }
+    if (!el.hasAttribute('data-a-ease')) {
+      el.setAttribute('data-a-ease', 'power1.out'); // Default easing
+    }
+    if (!el.hasAttribute('data-a-each')) {
+      el.setAttribute('data-a-each', '0.1'); // Default stagger delay
+    }
+    if (!el.hasAttribute('data-a-delay')) {
+      el.setAttribute('data-a-delay', '0'); // Default delay
+    }
+    if (!el.hasAttribute('data-obs-once')) {
+      el.setAttribute('data-obs-once', 'true'); // Set to trigger animation only once
+    }
+    if (!el.hasAttribute('data-obs-t')) {
+      el.setAttribute('data-obs-t', '1'); // Default threshold value
+    }
+  });
+
+  // Initialize the animation for each element after setting the attributes
+  new StaggerText("data-a-split"); // Ensure to use the data-a-split attribute for triggering
+}
+
+// Call the function with your class name
+initializeClassBasedAnimation("stagger-txt");
